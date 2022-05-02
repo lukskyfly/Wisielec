@@ -1,21 +1,19 @@
 window.onload = start;
 
-function kategorie (){
-
-    losowanie();
-    start();
-
-}
-
+let historia = ['bitwa pod grunwaldem','porop szwedzki', 'zamek królewski','średniowiecze', 'starożytny egipt' ];
 let kraje = ['polska','italia', 'niemcy', 'holandia', 'irlandia'];
 
-function losowanie(){
+function losowanie_panstwa(){
 
     let numer=Math.floor(Math.random()*kraje.length);
     return kraje[numer];
 }
-
-let haslo = losowanie();
+/*nie wiem jak sprawdzić który onclick jest wybrany aby móc przypisać fucnkcje do let haslo,Czy lepiej jest tu urzyć switcha?
+function losowanie_historii(){  
+    let numer=Math.floor(Math.random()*historia.length);
+    return historia[numer];
+}*/
+let haslo = losowanie_panstwa();
 let haslo1 = "";
 let dlugosc = haslo.length;
 let ile_skuch = 0;
@@ -42,7 +40,7 @@ function start(){
      
     for(i=0; i<=34;i++){
 
-        let element = `lit ${i}`;
+        let element = "lit" + i;
         tresc_diva += `<div class=litera onclick=sprawdz(${i}) id=${element}>${litery[i]}</div>`;
         if((i+1) % 7 == 0) tresc_diva+='<div style="clear:both;"></div>';
     }
@@ -99,17 +97,17 @@ function sprawdz(nr){
    
   //wygrana
   if(haslo==haslo1){
-    document.getElementById("alfabet").innerHTML = 'Tak jest! Podano prawidłowe hasło: '+haslo+'<br/><br/><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>';
+    document.getElementById("alfabet").innerHTML = `Tak jest! Podano prawidłowe hasło: ${haslo}<br/><br/><span class="reset" onclick="wybieszKategorie()"">JESZCZE RAZ?</span>`;
     }
    
   //przegrana
   if(ile_skuch>=9){
-    document.getElementById("alfabet").innerHTML = 'Przegrana! Prawidłowe hasło to: '+haslo+'<br/><br/><span class="reset" onclick="wybieszKategorie()">JESZCZE RAZ?</span>';
+    document.getElementById("alfabet").innerHTML = `Przegrana! Prawidłowe hasło to: ${haslo}<br/><br/><span class="reset" onclick="wybieszKategorie()">JESZCZE RAZ?</span>`;
     }
 }
 let tresc_diva_kategorie = "";
 
 function wybieszKategorie (){
-tresc_diva_kategorie += '<div id="alfabet">Wybierz kategorie hasła</div><br><br><span class="kategorie" onclick="location.reload()">"Państwa"</span><br/><span class="kategorie" >"Historia"</span> </br><span class="kategorie" >"Technologie"</span></br><span class="kategorie" >"Nauka"</span></br><span class="kategorie" >"Przysłowia"</span>'
+tresc_diva_kategorie += '<div id="alfabet">Wybierz kategorie hasła</div><br><br><span class="kategorie" onclick="location.reload()">"Państwa"</span><br/><span class="kategorie" onclick="losowanie_historii()" >"Historia"</span> </br><span class="kategorie" >"Technologie"</span></br><span class="kategorie" >"Nauka"</span></br><span class="kategorie" >"Przysłowia"</span>'
 document.getElementById("alfabet").innerHTML = tresc_diva_kategorie;
 }   
