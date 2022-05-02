@@ -40,7 +40,7 @@ function start(){
      
     for(i=0; i<=34;i++){
 
-        let element = "lit" + i;
+        let element = "lit" + i; /*tu nie moge wpisać literalsa*/
         tresc_diva += `<div class=litera onclick=sprawdz(${i}) id=${element}>${litery[i]}</div>`;
         if((i+1) % 7 == 0) tresc_diva+='<div style="clear:both;"></div>';
     }
@@ -49,7 +49,7 @@ function start(){
     wypiszhaslo();
 }
  
- String.prototype.ustawZnak = function (miejsce,znak){
+ String.prototype.ustawZnak = function (miejsce,znak){  /* Jeszczze nie wiem jak zmienic to na zwykłą funcksje*/
 
     if(miejsce>this.length-1){
         return this.toString()
